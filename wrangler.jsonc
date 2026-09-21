@@ -1,0 +1,21 @@
+{
+  "name": "salva-video",
+  "main": "cloudflare/worker.js",
+  "compatibility_date": "2026-09-21",
+  "containers": [
+    {
+      "class_name": "SalvaVideoContainer",
+      "image": "./Dockerfile",
+      "max_instances": 1,
+      "instance_type": "basic"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "name": "SALVA_VIDEO", "class_name": "SalvaVideoContainer" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["SalvaVideoContainer"] }
+  ]
+}

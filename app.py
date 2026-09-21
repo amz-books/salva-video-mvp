@@ -28,6 +28,9 @@ def yt_dlp_options():
 
 
 def ffmpeg_exe():
+    system_ffmpeg = shutil.which("ffmpeg")
+    if system_ffmpeg:
+        return system_ffmpeg
     binaries = DEPS / "imageio_ffmpeg" / "binaries"
     matches = list(binaries.glob("ffmpeg*.exe"))
     if not matches:
@@ -156,6 +159,8 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    server = ThreadingHTTPServer(("127.0.0.1", 8000), Handler)
-    print("Abra http://localhost:8000")
+    port = int(os.environ.get("PORT", "8000"))
+    host = "0.0.0.0" if os.environ.get("CLOUDFLARE_CONTAINER") == "1" else "127.0.0.1"
+    server = ThreadingHTTPServer((host, port), Handler)
+    print(f"Servidor em http://{host}:{port}")
     server.serve_forever()

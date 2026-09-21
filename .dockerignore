@@ -1,0 +1,9 @@
+.git
+.deps
+.runtime
+node_modules
+__pycache__
+*.mp4
+*.m4a
+*.part
+*.ytdl
