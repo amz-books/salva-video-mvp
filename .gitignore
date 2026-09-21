@@ -1,0 +1,8 @@
+.deps/
+__pycache__/
+*.py[cod]
+*.mp4
+*.m4a
+*.part
+*.ytdl
+.DS_Store
